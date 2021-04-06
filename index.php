@@ -31,6 +31,22 @@ $animals = $conn->query($query);
 $categoryQuery = "SELECT category FROM animals GROUP BY category";
 
 $categories = $conn->query($categoryQuery);
+
+//UPLOAD FILES 
+if ($_FILES) {
+  $uploaddir = '/Zoo/uploads/';
+  $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
+
+  echo '<pre>';
+  if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
+    echo "File is valid, and was successfully uploaded.\n";
+  } else {
+    echo "Possible file upload attack!\n";
+  }
+
+  echo 'Here is some more debugging info:';
+  print_r($_FILES);
+}
 ?>
 
 <html>
@@ -43,25 +59,28 @@ $categories = $conn->query($categoryQuery);
 
 <body>
   <header>
-    <img src="lion.jpg" alt="lion">
+    <img src="elefant.jpg" alt="lion">
   </header>
   <main>
     <h1>Welcome to The Zoo!</h1>
     <p>Set in one of the most beautiful wildlife environments in the world, The Zoo is home to over 2,800 animals from over 300 species of mammals, birds and reptiles that roam freely in open enclosures resembling their natural habitats, separated from visitors only by moats and wooden fencing. The park also boasts the world's first free-ranging orangutan habitat in a zoo! Spend a day exploring this award winning zoo - a great family activity in Singapore. Book your The Zoo ticket with great discount today!</p>
-    <h2>Search animals</h2>
 
-    <form method="post" action="index.php">
-      <input type="text" name="search" placeholder="Search animal..." />
-      <input type="submit" value="Search" />
-      <select name="category">
-        <option value="">All</option>
-        <?php
-        foreach ($categories as $category) {
-          echo "<option value='" . $category['category'] . "'>" . $category['category'] . "</option>";
-        }
-        ?>
-      </select>
-    </form>
+
+    <div class="searchbox">
+      <h2>Search animals</h2>
+      <form method="post" action="index.php">
+        <input type="text" name="search" placeholder="Search animal..." />
+        <input type="submit" value="Search" />
+        <select name="category">
+          <option value="">All</option>
+          <?php
+          foreach ($categories as $category) {
+            echo "<option value='" . $category['category'] . "'>" . $category['category'] . "</option>";
+          }
+          ?>
+        </select>
+      </form>
+    </div>
 
     <h3>Search results</h3>
     <ul>
@@ -71,6 +90,18 @@ $categories = $conn->query($categoryQuery);
       }
       ?>
     </ul>
+
+    <div class="uploadbox">
+      <form enctype="multipart/form-data" action="index.php" method="POST">
+        <!-- MAX_FILE_SIZE must precede the file input field -->
+        <input type="hidden" name="MAX_FILE_SIZE" value="10000" />
+        <!-- Name of input element determines name in $_FILES array -->
+        <h3> Upload File</h3>
+        <p>Upload a photo of your favourite animal to have a chance to win a trip to The Zoo for two people. The winner gets two nights all inclusive at the Zoo, all expenses paid for. </p>
+        <input name="userfile" type="file" />
+        <input type="submit" value="Send File" />
+      </form>
+    </div>
   </main>
 </body>
 
