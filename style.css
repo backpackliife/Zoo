@@ -4,6 +4,7 @@ header {
 body {
   display: flex;
   flex-direction: column;
+  font-family: "Roboto", sans-serif;
   align-items: center;
 }
 
@@ -11,19 +12,40 @@ main {
   max-width: 800px;
 }
 
+/* TEXT DESIGN */
+
 h1 {
-  font-family: "Roboto", sans-serif;
   font-size: 50px;
-  font-weight: 500;
+  font-weight: 1000;
 }
 
 h2 {
-  font-family: "Roboto", sans-serif;
   font-size: 30px;
   font-weight: 400;
 }
 
+h3 {
+  font-size: 25px;
+  font-weight: 400;
+}
+
 p {
-  font-family: "Roboto", sans-serif;
   font-size: 18px;
+}
+
+ul {
+  font-size: 18px;
+}
+
+/* INPUT EDIT */
+
+input {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+input[type="text"] {
+  width: 60%;
 }
