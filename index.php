@@ -1,52 +1,50 @@
-<?php
+  <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+      ini_set('display_errors', 1);
+      ini_set('display_startup_errors', 1);
+      error_reporting(E_ALL);
 
-// Database connection input
-$conn = new PDO('mysql:host=localhost;dbname=zoo;port=8889;charset=UTF8;', "ZooKeeper", "zoo");
+    // Database connection input
+      $conn = new PDO('mysql:host=localhost;dbname=zoo;port=8889;charset=UTF8;', "ZooKeeper", "zoo");
 
-// Set search inputs
-$searchString = "";
-if (isset($_POST['search'])) {
-  $searchString = $_POST['search'];
-}
+  // Set search inputs
+    $searchString = "";
+    if (isset($_POST['search'])) {
+    $searchString = $_POST['search'];
+    }
 
-$searchCategory = "";
-if (isset($_POST['category'])) {
-  $searchCategory = $_POST['category'];
-}
+    $searchCategory = "";
+    if (isset($_POST['category'])) {
+      $searchCategory = $_POST['category'];
+    }
 
-// Search query
-$query = "SELECT * FROM animals WHERE name LIKE '%$searchString%'";
+  // Search query
+    $query = "SELECT * FROM animals WHERE name LIKE '%$searchString%'";
 
-if ($searchCategory !== "") {
-  $query .= " AND category='$searchCategory'";
-}
+    if ($searchCategory !== "") {
+    $query .= " AND category='$searchCategory'";
+    }
 
-// Execute query
-$animals = $conn->query($query);
+  // Execute query
+    $animals = $conn->query($query);
 
-$categoryQuery = "SELECT category FROM animals GROUP BY category";
+    $categoryQuery = "SELECT category FROM animals GROUP BY category";
 
-$categories = $conn->query($categoryQuery);
+    $categories = $conn->query($categoryQuery);
 
 //UPLOAD FILES 
-if ($_FILES) {
-  $uploaddir = '/Zoo/uploads/';
-  $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
+    if ($_FILES) {
 
-  echo '<pre>';
-  if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
-    echo "File is valid, and was successfully uploaded.\n";
-  } else {
-    echo "Possible file upload attack!\n";
-  }
+    $uploadDir = "uploads/";
+    $uploadPath = $uploadDir . basename($_FILES['fileToUpload']['name']);
 
-  echo 'Here is some more debugging info:';
-  print_r($_FILES);
+    if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $uploadPath)) {
+        echo "File is valid, and was successfully uploaded";
+    } else {
+        echo "Invaild file, please try again";
+    }
 }
+
 ?>
 
 <html>
@@ -94,11 +92,11 @@ if ($_FILES) {
     <div class="uploadbox">
       <form enctype="multipart/form-data" action="index.php" method="POST">
         <!-- MAX_FILE_SIZE must precede the file input field -->
-        <input type="hidden" name="MAX_FILE_SIZE" value="10000" />
+        <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
         <!-- Name of input element determines name in $_FILES array -->
         <h3> Upload File</h3>
         <p>Upload a photo of your favourite animal to have a chance to win a trip to The Zoo for two people. The winner gets two nights all inclusive at the Zoo, all expenses paid for. </p>
-        <input name="userfile" type="file" />
+        <input type="file" name="fileToUpload" id="ftu" />
         <input type="submit" value="Send File" />
       </form>
     </div>
