@@ -59,7 +59,7 @@ if ($_FILES) {
 
 <body>
   <header>
-    <img src="elefant.jpg" alt="lion">
+    <img src="elefant.jpg" alt="elephant">
   </header>
   <main>
     <h1>Welcome to The Zoo!</h1>
@@ -83,13 +83,15 @@ if ($_FILES) {
     </div>
 
     <h3>Search results</h3>
-    <ul>
-      <?php
-      foreach ($animals as $animal) {
-        echo "<li>" . $animal['name'] . "</li>";
-      }
-      ?>
-    </ul>
+    <div class="results">
+      <ul>
+        <?php
+        foreach ($animals as $animal) {
+          echo "<li>" . $animal['name'] . "</li>";
+        }
+        ?>
+      </ul>
+    </div>
 
     <div class="uploadbox">
       <form enctype="multipart/form-data" action="index.php" method="POST">
@@ -103,6 +105,11 @@ if ($_FILES) {
       </form>
     </div>
   </main>
+  <footer>
+    <p>© The Zoo 2021</p>
+  </footer>
 </body>
+
+
 
 </html>

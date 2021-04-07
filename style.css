@@ -3,7 +3,7 @@ body {
   flex-direction: column;
   font-family: "Roboto", sans-serif;
   align-items: center;
-  background-color: #708090;
+  background-color: #636a5f;
 }
 
 main {
@@ -46,6 +46,7 @@ input {
   border-width: 1px;
   border-color: black;
   border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* SEARCH FIELD */
@@ -58,6 +59,13 @@ input[type="submit"] {
   background-color: white;
 }
 
+/* UPLOAD FILE  */
+input[type="file"] {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* CATEGORY ALL */
 select {
   padding: 12px 20px;
   margin: 8px 0;
@@ -65,6 +73,7 @@ select {
   border-width: 1px;
   border-color: black;
   border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .searchbox {
@@ -74,4 +83,25 @@ select {
 
 .uploadbox {
   margin-top: 100px;
+}
+/* STYLE RESULT BOX */
+
+.results {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  padding: 2%;
+  min-height: 200px;
+  max-height: 200px;
+  max-width: 50%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: black;
+}
+
+/* FOOTER STYLE */
+footer {
+  text-align: center;
+  padding: 3px;
+  color: white;
 }
