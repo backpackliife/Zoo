@@ -3,7 +3,7 @@ body {
   flex-direction: column;
   font-family: "Roboto", sans-serif;
   align-items: center;
-  background-color: #636a5f;
+  background: #636a5f;
 }
 
 main {
@@ -42,9 +42,6 @@ input {
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -70,8 +67,6 @@ select {
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border-width: 1px;
-  border-color: black;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -95,8 +90,6 @@ select {
   max-width: 50%;
   box-sizing: border-box;
   border-radius: 10px;
-  border-width: 1px;
-  border-color: black;
 }
 
 /* FOOTER STYLE */
